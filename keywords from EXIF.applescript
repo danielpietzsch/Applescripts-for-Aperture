@@ -4,7 +4,14 @@ on ImportActionForVersions(importImages)
 			tell library 1
 				tell item i of importImages
 					set cameraModel to value of EXIF tag "Model"
-					set lensModel to value of EXIF tag "LensModel"
+					
+					-- mobile phones might not have a LensModel EXIF tag
+					try
+						set lensModel to value of EXIF tag "LensModel"
+					on error
+						set lensModel to ""
+					end try
+					
 					make new keyword with properties {name:cameraModel}
 					
 					-- I use the Nikon 50mm f/1.8 E manual lens on both the GF1 and the D40.
