@@ -1,8 +1,8 @@
-on ImportActionForVersions(importImages)
+on ImportActionForVersions(imageSel)
 	tell application "Aperture"
-		repeat with i from 1 to count of importImages
+		repeat with i from 1 to count of imageSel
 			tell library 1
-				tell item i of importImages
+				tell item i of imageSel
 					set cameraModel to value of EXIF tag "Model"
 					
 					-- mobile phones might not have a LensModel EXIF tag
